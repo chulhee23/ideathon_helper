@@ -3,13 +3,19 @@ class TeamsController < ApplicationController
     
     end
     def show
-    
+        @team = Team.find(params[:id])
     end
     def new
-    
+        @team = Team.new
     end
     def create
-    
+        @team = Team.new(team_params)
+ 
+        if @team.save
+            redirect_to @team
+        else
+            render 'new'
+        end
     end
     def edit
     
@@ -19,5 +25,9 @@ class TeamsController < ApplicationController
     end
     def destroy
     
+    end
+    private
+    def team_params
+        params.require(:team).permit(:team_name, :title, :writer, :content, :recruitment, :avatar)
     end
 end
