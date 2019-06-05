@@ -14,14 +14,7 @@
     <%= f.label :content, '간단하게 프로젝트를 소개해주세요!' %><br>
     <%= f.text_area :content %>
 </p>
-<<<<<<< HEAD
-<%= f.file_field :avatar %>
-<br>
-<!-- <= f.check_box :recruitment %> -->
-<br>
-=======
 <%= f.file_field :avatars, multiple: true %>
->>>>>>> 1e1fa2290e50acd8399f9651b250cd8a592fe6e1
 <p>
     <%= f.submit%>
 </p>

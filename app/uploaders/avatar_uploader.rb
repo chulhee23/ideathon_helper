@@ -35,15 +35,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-<<<<<<< HEAD
-  def extension_whitelist
-    %w(jpg jpeg gif png)
-  end
-=======
   # def extension_whitelist
   #   %w(jpg jpeg gif png)
   # end
->>>>>>> 1e1fa2290e50acd8399f9651b250cd8a592fe6e1
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
