@@ -1,21 +1,23 @@
 <h2>Make your Team</h2>
 <%= form_for :team, url: teams_path do |f| %>
-<p>
-    <%= f.label :team_name, '팀명을 입력하세요' %><br>
-    <%= f.text_field :team_name %>
-</p>
+    <p>
+        <%= f.label :team_name, '프로젝트 이름' %><br>
+        <%= f.text_field :team_name %>
+    </p>
 
-<p>
-    <%= f.label :title, '프로젝트명' %><br>
-    <%= f.text_field :title %>
-</p>
+    <p>
+        <%= f.label :title, '간단한 소제목' %><br>
+        <%= f.text_field :title %>
+    </p>
 
-<p>
-    <%= f.label :content, '간단하게 프로젝트를 소개해주세요!' %><br>
-    <%= f.text_area :content %>
-</p>
-    <%= f.file_field :avatars, multiple: true %>
-<p>
-    <%= f.submit%>
-</p>
+    <p>
+        <%= f.label :content, '프로젝트를 소개해주세요!' %><br>
+        <%= f.text_area :content %>
+    </p>
+        <%= f.label :avatars, '첨부할 이미지를 넣어주세요.(복수선택 가능)' %><br>
+        <%= f.file_field :avatars, multiple: true %>
+    <p>
+    <br>
+        <%= f.submit%>
+    </p>
 <% end %>
