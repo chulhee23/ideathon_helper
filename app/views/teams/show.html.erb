@@ -28,4 +28,5 @@
 </div>
 <%= link_to  "목록", teams_path %>
 <%= link_to  "수정", edit_team_path %>
-<%= link_to  "삭제", team_path, method: :DELETE %>
+<%= link_to  "삭제", team_path, method: :DELETE, data: {confirm: '정말 삭제하시겠어요?'}%>
+<br>
