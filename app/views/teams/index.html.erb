@@ -1,2 +1,18 @@
 <h1>IDEATHON</h1>
 <%= link_to 'make your team!', new_team_path %>
+<hr>
+<div class="row">
+    <% @teams.each do |team| %>
+        <div class="col-4">
+            <div class="card">
+                <%= team.team_name %>
+                <br>
+                <%= team.title %>
+                <br>
+                <%= team.content %>
+            </div>
+        </div>
+        
+    <% end %>
+    
+</div>
