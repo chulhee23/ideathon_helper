@@ -1,18 +1,31 @@
-
 <h1><%=@team.team_name%></h1>
 <%= @team.title %>
 <br>
-<%= @team.writer %>
+<p>작성자 : <%= @team.writer %></p>
 <br>
-<%= @team.content %>
+<%if @team.recruitment %>
+<p>모집 상태 : 팀원을 모집중입니다.</p>
+<% else %>
+<p>모집 상태 : 모집이 종료되었습니다.</p>
+<% end %>
 <br>
-<%= @team.recruitment %>
-<br>
+<hr>
+<div style="text-align: center">
+    <%= @team.content %>
+    <br>
 
-<br>
+    <br>
 
-<%= image_tag(@team.avatars[0].url, width:'50%') %>
-<br>
+    <br>
+
+    <% i=0 %>
+    <% while i<@team.avatars.length %>
+    <%= image_tag(@team.avatars[i].url, width:'50%') %>
+    <br><br>
+    <%i=i+1%>
+    <% end %>
+    <hr>
+</div>
 <%= link_to  "목록", teams_path %>
 <%= link_to  "수정", edit_team_path %>
 <%= link_to  "삭제", team_path, method: :DELETE %>

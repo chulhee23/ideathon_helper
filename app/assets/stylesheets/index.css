@@ -1,7 +1,7 @@
 a{
     all:unset;
 }
-card-title{
+.card-title{
     color:black;
-    font-size:50px;
+    font-size:2em;
 }
