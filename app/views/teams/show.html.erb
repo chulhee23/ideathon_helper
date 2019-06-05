@@ -1,1 +1,17 @@
+<%= @team %>
 <h1><%=@team.team_name%></h1>
+<%= @team.title %>
+<br>
+<%= @team.writer %>
+<br>
+<%= @team.content %>
+<br>
+<%= @team.recruitment %>
+<br>
+
+<%= @team.avatars[0].url %>
+<br>
+
+<%= image_tag(@team.avatars[0].url, width:'50%') %>
+<br>
+<%= link_to  "back", teams_path %>

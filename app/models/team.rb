@@ -1,4 +1,4 @@
 class Team < ApplicationRecord
-    mount_uploaders :avatar, AvatarUploader
+    mount_uploaders :avatars, AvatarUploader
     serialize :avatars, JSON
 end
