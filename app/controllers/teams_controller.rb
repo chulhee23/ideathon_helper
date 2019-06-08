@@ -13,6 +13,8 @@ class TeamsController < ApplicationController
        
     def create
         @team = Team.new(team_params)
+        current_user.team = @team
+        current_user.save
         @team.writer=current_user.name
         @team.recruitment = true
         if @team.save
