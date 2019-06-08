@@ -42,6 +42,18 @@ class TeamsController < ApplicationController
         current_user.save
         redirect_to team_path(current_user.team)
     end
+    
+    def recruit
+        team = Team.find(params[:id])
+        if team.recruitment
+            team.recruitment = false
+        else
+            team.recruitment = true
+        end
+        team.save
+        redirect_to team_path(team)
+
+    end
 
     private
     def team_params
