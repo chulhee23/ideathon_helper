@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :teams do
     resources :comments
   end
+  post 'teams/apply/:id' => 'teams#apply', as: 'apply'
 end

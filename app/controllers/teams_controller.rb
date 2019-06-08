@@ -36,7 +36,13 @@ class TeamsController < ApplicationController
         
         redirect_to teams_path
     end
-       
+    
+    def apply
+        current_user.team = Team.find(params[:id])
+        current_user.save
+        redirect_to team_path(current_user.team)
+    end
+
     private
     def team_params
         params.require(:team).permit(:team_name, :title, :content, {avatars: []})
