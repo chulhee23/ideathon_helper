@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :destroy, :edit]
     def index
         @teams = Team.all
     end
@@ -11,7 +12,7 @@ class TeamsController < ApplicationController
        
     def create
         @team = Team.new(team_params)
-        @team.writer="user name"
+        @team.writer=current_user.name
         @team.recruitment = true
         if @team.save
             redirect_to @team
