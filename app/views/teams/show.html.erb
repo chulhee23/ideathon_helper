@@ -24,9 +24,41 @@
     <br><br>
     <%i=i+1%>
     <% end %>
-    <hr>
+    <div style="float:left;">
+        <%= link_to  "목록", teams_path %>
+        <%= link_to  "수정", edit_team_path %>
+        <%= link_to  "삭제", team_path, method: :DELETE, data: {confirm: '정말 삭제하시겠어요?'}%>
+    </div>
+    <br>
 </div>
-<%= link_to  "목록", teams_path %>
-<%= link_to  "수정", edit_team_path %>
-<%= link_to  "삭제", team_path, method: :DELETE, data: {confirm: '정말 삭제하시겠어요?'}%>
+
 <br>
+<br>
+<h3>댓글 <%= @comments_num %>개</h3>
+<hr>
+<% @team.comments.each do |c| %>
+<p>
+    <b><%= c.commenter %></b>
+    <small><%=c.created_at%></small>
+    <br>
+    <%=simple_format c.body %>
+    <%= c.secret %>
+
+</p>
+
+<hr>
+<% end %>
+
+<%= form_for([@team, @team.comments.build]) do |f| %>
+<p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, class:"form-control" %>
+    <br>
+    <%= f.label :secret, '비밀로하시겠어요?'%>
+    <%= f.check_box :secret %>
+    
+</p>
+<p>
+    <%= f.submit %>
+</p>
+<% end %>
