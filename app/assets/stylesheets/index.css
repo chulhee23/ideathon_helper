@@ -3,5 +3,8 @@ a{
 }
 .card-title{
     color:black;
-    font-size:2em;
+    font-size:43px;
+}
+.card-text p{
+    font-size:33px;
 }

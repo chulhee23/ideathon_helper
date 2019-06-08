@@ -1,0 +1,17 @@
+.align{
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.input-field{
+    width:60%;
+    height:60px;
+    background-color: #f6f6f6;
+    border-radius:20px;
+}
+
+.devise-title{
+    font-size:43px;
+}
+.devise-label{
+    font-size:30px;
+}
