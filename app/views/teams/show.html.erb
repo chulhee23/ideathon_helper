@@ -3,6 +3,12 @@
 <br>
 <p>작성자 : <%= @team.writer %></p>
 <br>
+<h3>팀원</h3>
+<% @team.users.each do |u| %>
+    <ul>
+        <li><%= u.name %></li>
+    </ul>
+<% end %>
 <%if @team.recruitment %>
 <p>모집 상태 : 팀원을 모집중입니다.</p>
 <% else %>
