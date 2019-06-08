@@ -6,7 +6,7 @@
 <h3>팀원</h3>
 <% @team.users.each do |u| %>
     <ul>
-        <li><%= u.name %></li>
+        <li><%= u.name %> | <%= u.univ%></li>
     </ul>
 <% end %>
 <%if @team.recruitment %>
