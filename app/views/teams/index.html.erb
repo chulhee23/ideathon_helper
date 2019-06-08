@@ -4,7 +4,7 @@
 <hr>
 <div class="row">
     <% @teams.each do |team| %>
-    <div class="col-lg-4 col-md-6 mb-5">
+    <div class="col-lg-4 col-md-12 mb-5">
         <div class="card">
             <div class="card-body">
                 <%= link_to "팀명 :#{team.team_name}",team_path(team), class:"card-title" %>
