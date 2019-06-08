@@ -90,7 +90,7 @@
     <%= f.text_area :body, class:"form-control", placeholder:"댓글을 입력하세요" %>
     <br>
     <%= f.label :secret, '비밀로하시겠어요?(연락처 정보 등을 담을 시 비밀을 선택해주세요)'%>
-    <%= f.check_box :secret %>
+    <%= f.check_box :secret,{}, true, false %>
 
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>
