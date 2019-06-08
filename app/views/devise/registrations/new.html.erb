@@ -22,6 +22,25 @@
                 class:"input-field",
                 input_html: { autocomplete: "email" }%>
       <br><br>
+
+      <%= f.label :name, '이름을 입력해주세요.', class:"devise-label" %>
+      <br>
+      <%= f.text_field :name,
+                required: true,
+                autofocus: false,
+                class:"input-field",
+                input_html: { autocomplete: "" }%>
+      <br><br>
+      <%= f.label :univ, '학교를 입력해주세요.', class:"devise-label" %>
+      <br>
+      <%= f.text_field :univ,
+                required: true,
+                autofocus: false,
+                class:"input-field",
+                input_html: { autocomplete: "" }%>
+      <br><br>
+
+
       <%= f.label :password, '비밀번호를 입력해주세요.' , class:"devise-label"%>
       <br>
       <%= f.password_field :password,
