@@ -1,4 +1,5 @@
 class Team < ApplicationRecord
+    has_many :comments, dependent: :destroy
     mount_uploaders :avatars, AvatarUploader
     serialize :avatars, JSON
 

@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
     end
     def show
         @team = Team.find(params[:id])
+        @comments_num = @team.comments.count
     end
     def new
         @team = Team.new
