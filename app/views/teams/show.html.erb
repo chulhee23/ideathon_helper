@@ -12,7 +12,7 @@
 <%if @team.recruitment %>
 <p>팀원 모집 상태 : 모집중입니다.</p>
 
-<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}" >지원하기</a>
+<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}" onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")' >지원하기</a>
 
 <form action="/teams/apply/<%=@team.id %>" id="apply" method="POST" >
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
