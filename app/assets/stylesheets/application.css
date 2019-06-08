@@ -24,3 +24,20 @@
  .head-title{
      font-size:46px;
  }
+
+.footer{
+    padding:20px;
+    text-align: center;
+    color:white;
+    background-color:black;
+    font-size:23px;
+}
+
+.footer-fb a{
+    all:unset;
+}
+.footer-for p{
+    font-size:20px;
+    color:#f7f7f7;
+    font-family: italic
+}
