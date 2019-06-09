@@ -4,4 +4,6 @@ class User < ApplicationRecord
   belongs_to :team, required: false
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+    validates_uniqueness_of :name
 end
