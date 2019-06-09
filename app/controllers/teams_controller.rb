@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-    before_action :authenticate_user!, only: [:new, :destroy, :edit]
+    before_action :authenticate_user!, only: [:new, :show, :destroy, :edit]
     def index
         @teams = Team.all
     end
