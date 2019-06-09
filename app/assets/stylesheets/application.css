@@ -18,7 +18,7 @@
      font-family: 'BBTreeGR';
  }
 
- input{
+ input[type="text"]{
      all:unset;
  }
  .head-title{
