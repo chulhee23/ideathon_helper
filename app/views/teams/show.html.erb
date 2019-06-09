@@ -11,37 +11,37 @@
 <% end %>
 <% if @team.writer == current_user.name %>
     <% if @team.recruitment %>
-        <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
-            onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료</a>
+    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
+        onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료</a>
 
-        <form action="/teams/recruit/<%=@team.id %>" id="recruit-end" method="POST">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input type="hidden">
-        </form>
+    <form action="/teams/recruit/<%=@team.id %>" id="recruit-end" method="POST">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="hidden">
+    </form>
     <% else %>
-        <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-start').submit()}"
+    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-start').submit()}"
         onclick='return confirm("모집을 하시겠습니까?")'>모집하기</a>
 
-        <form action="/teams/recruit/<%=@team.id %>" id="recruit-start" method="POST">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input type="hidden">
-        </form>
+    <form action="/teams/recruit/<%=@team.id %>" id="recruit-start" method="POST">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="hidden">
+    </form>
     <% end %>
 <% end %>
 <br>
 <%if @team.recruitment %>
-<p>팀원 모집 상태 : 모집중입니다.</p>
+    <p>팀원 모집 상태 : 모집중입니다.</p>
 
-<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
-    onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
+    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
+        onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
 
-<form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <input type="hidden">
-</form>
+    <form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <input type="hidden">
+    </form>
 
-<% else %>
-<p>팀원 모집 상태 : 모집이 종료되었습니다.</p>
+    <% else %>
+    <p>팀원 모집 상태 : 모집이 종료되었습니다.</p>
 <% end %>
 <br>
 <hr>
@@ -53,12 +53,18 @@
 
     <br>
 
-    <% i=0 %>
-    <% while i<@team.avatars.length %>
-    <%= image_tag(@team.avatars[i].url, width:'50%') %>
-    <br><br>
-    <%i=i+1%>
+    
+    <% @team.avatars.each do |img| %>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 col-sm-12">
+                <%= image_tag(img.url, style:'max-width:100%')%>
+            </div>
+        </div>
+        <br><br>
     <% end %>
+    
+    <br><br><br>
     <div style="float:left;">
         <%= link_to  "목록", teams_path %>
         <%= link_to  "수정", edit_team_path %>
@@ -76,9 +82,14 @@
     <b><%= c.commenter %></b>
     <small><%=c.created_at%></small>
     <br>
+    <% if c.secret %>
+    <p>비밀글입니다.</p>
+    <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
+    원문 : <%= simple_format c.body %>
+    <% end %>
+    <% else %>
     <%=simple_format c.body %>
-    <%= c.secret %>
-
+    <% end %>
 </p>
 
 <hr>
@@ -90,8 +101,7 @@
     <%= f.text_area :body, class:"form-control", placeholder:"댓글을 입력하세요" %>
     <br>
     <%= f.label :secret, '비밀로하시겠어요?(연락처 정보 등을 담을 시 비밀을 선택해주세요)'%>
-    <%= f.check_box :secret %>
-
+    <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>
 <% end %>
