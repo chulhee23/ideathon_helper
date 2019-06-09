@@ -9,16 +9,21 @@ class TeamsController < ApplicationController
         @comments_num = @team.comments.count
     end
     def new
-        @team = Team.new
+        if current_user.captain or (current_user.team !=nil)
+            redirect_to team_path(current_user.team)
+        else
+            @team = Team.new
+        end
     end
        
     def create
-        if current_user.captain
+        if current_user.captain or (current_user.team !=nil)
             redirect_to team_path(current_user.team)
         else
             @team = Team.new(team_params)
             current_user.team = @team
             current_user.captain = true
+            current_user.belonging = true
             current_user.save
             @team.writer=current_user.name
             @team.recruitment = true
@@ -56,14 +61,39 @@ class TeamsController < ApplicationController
         if current_user.captain
             @message = "이미 소속된 팀이 있습니다."
         else
-            current_user.team = Team.find(params[:id])
-            current_user.save
-            redirect_to team_path(current_user.team)
-        end
+            if current_user.belonging !=true
+                current_user.team = Team.find(params[:id])
+                current_user.save
+                redirect_to team_path(current_user.team)    
+            else
+                @message = "이미 소속된 팀이 있습니다."
+                redirect_to team_path(current_user.team)    
+            end
 
+        end
         
     end
     
+    def cancel
+        current_user.team = nil
+        current_user.save
+        redirect_to '/'
+    end
+
+
+    def accept
+        temp_user = User.find(params[:id])
+
+        if temp_user.belonging != true
+            temp_user.belonging = true
+            temp_user.save
+            redirect_to team_path(current_user.team)
+        else
+            redirect_to team_path(current_user.team)
+        end
+    end
+
+
     def recruit
         team = Team.find(params[:id])
         if team.recruitment

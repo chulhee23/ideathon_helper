@@ -5,8 +5,23 @@
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
     <% if u.captain %>
-        <% ccc = u %>
-        <h3>팀장 : <%= ccc.name %></h3>
+        <% captain = u %>
+        <h3>팀장 : <%= captain.name %></h3>
+        
+        <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
+        <% if captain == current_user %>
+            <h4>지원자 리스트</h4>
+            <% @team.users.each do |tmp| %>
+                <!-- 지원은 했으나 아직 소속되기 전 -->
+                <% if tmp.belonging != true %>
+                
+                    <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
+                    <br>
+                    <br>
+                <% end %>
+            <% end %>
+        <% end %>
+
         <% break %>
     <% else %>
         
@@ -18,7 +33,9 @@
 <h3>팀원</h3>
 <% @team.users.each do |u| %>
 <ul>
+    <% if u.belonging %>
     <li><%= u.name %> | <%= u.univ%></li>
+    <% end %>
 </ul>
 <% end %>
 <% if @team.writer == current_user.name %>
@@ -43,9 +60,14 @@
 <br>
 <%if @team.recruitment %>
     <p>팀원 모집 상태 : 모집중입니다.</p>
-    <% if current_user.captain %>
-    <a class="btn btn-outline-secondary"
-        onclick="alert('이미 소속된 팀이 있습니다.')">지원하기</a>
+    <% if current_user.captain or (current_user.team!=nil) %>
+        <% if current_user.belonging !=true %>
+            <a class="btn btn-outline-secondary"
+                onclick="alert('현재 지원한 팀이 있습니다.\n 지원을 취소 하시려면 상단의 지원취소 버튼을 눌러주세요')">지원하기</a>
+        <% else %>
+            <!-- 소속한 팀이 있는 경우 -->
+        <% end%>
+
     <% else %>
     <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
         onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
