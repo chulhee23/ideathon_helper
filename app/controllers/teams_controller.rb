@@ -51,6 +51,10 @@ class TeamsController < ApplicationController
     end
     def destroy
         @team = Team.find(params[:id])
+        @team.users.each do |u|
+            u.belonging = false
+            u.team = nil
+        end
         @team.destroy
         current_user.captain=false
         current_user.save

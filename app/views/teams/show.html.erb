@@ -1,23 +1,23 @@
-<h1><%=@team.team_name%></h1>
-<%= @team.title %>
+<h1 class="lg-font"><%=@team.team_name%></h1>
+<h2 class="lg-font"><%=@team.title %></h2>
 <br><br><br>
 
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
     <% if u.captain %>
         <% captain = u %>
-        <h3>팀장 : <%= captain.name %></h3>
+        <h3  class="md-font">팀장 : <%= captain.name %></h3>
         
         <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
         <% if captain == current_user %>
-            <h4>지원자 리스트</h4>
+            <h4  class="md-font">지원자 리스트</h4>
             <% @team.users.each do |tmp| %>
                 <!-- 지원은 했으나 아직 소속되기 전 -->
                 <% if tmp.belonging != true %>
-                
+                <div class="sm-font">
                     <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
-                    <br>
-                    <br>
+                </div>
+                    
                 <% end %>
             <% end %>
         <% end %>
@@ -28,11 +28,11 @@
     <% end %>
     
 <% end %>
-
+<hr>
 <br>
-<h3>팀원</h3>
+<h3 class="md-font">팀원</h3>
 <% @team.users.each do |u| %>
-<ul>
+<ul class="sm-font">
     <% if u.belonging %>
     <li><%= u.name %> | <%= u.univ%></li>
     <% end %>
@@ -59,7 +59,7 @@
 <% end %>
 <br>
 <%if @team.recruitment %>
-    <p>팀원 모집 상태 : 모집중입니다.</p>
+    <p  class="md-font">팀원 모집 상태 : 모집중입니다.</p>
     <% if current_user.captain or (current_user.team!=nil) %>
         <% if current_user.belonging !=true %>
             <a class="btn btn-outline-secondary"
@@ -82,7 +82,7 @@
 <% end %>
 <br>
 <hr>
-<div style="text-align: center">
+<div class="sm-font" style="text-align: center">
     <%= simple_format @team.content %>
     <br>
 
@@ -119,17 +119,17 @@
 <h3>댓글 <%= @comments_num %>개</h3>
 <hr>
 <% @team.comments.each do |c| %>
-<p>
+<p  class="xs-font">
     <b><%= c.commenter %></b>
     <small><%=c.created_at%></small>
     <br>
-    <% if c.secret %>
-    <p style="color:gray">비밀글입니다.</p>
+    <% if c.secret%>
+    <p style="color:gray" class="xs-font" >비밀글입니다.</p>
     <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
-    원문 : <%= simple_format c.body %>
+    원문 : <%= simple_format c.body, class:"xs-font" %>
     <% end %>
     <% else %>
-    <%=simple_format c.body %>
+    <%=simple_format c.body, class:"xs-font"  %>
     <% end %>
 </p>
 
@@ -138,10 +138,10 @@
 
 <%= form_for([@team, @team.comments.build]) do |f| %>
 <p>
-    <%= f.label :body, '댓글' %><br>
-    <%= f.text_area :body, class:"form-control", placeholder:"댓글을 입력하세요" %>
+    <%= f.label :body, '댓글' ,class:"sm-font" %><br>
+    <%= f.text_area :body, class:"form-control xs-font", placeholder:"댓글을 입력하세요" %>
     <br>
-    <%= f.label :secret, '비밀로 작성하시겠어요?(댓글 작성자와 글 작성자만 볼 수 있습니다.)'%>
+    <%= f.label :secret, '비밀로 작성하시겠어요?댓글 작성자와 글 작성자만 볼 수 있습니다.', class:"xs-font" %>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>

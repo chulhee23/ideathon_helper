@@ -51,9 +51,7 @@
  .head-title{
      font-size:46px;
  }
-.sm-font{
-    font-size:25px;
-}
+
 .footer{
     padding:20px;
     text-align: center;
@@ -69,4 +67,17 @@
     font-size:20px;
     color:#f7f7f7;
     font-family: italic
+}
+
+.lg-font{
+    font-size:50px;
+}
+.md-font{
+    font-size:40px;
+}
+.sm-font{
+    font-size:33px;
+}
+.xs-font{
+    font-size:25px;
 }
