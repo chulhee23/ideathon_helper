@@ -83,7 +83,7 @@
     <small><%=c.created_at%></small>
     <br>
     <% if c.secret %>
-    <p>비밀글입니다.</p>
+    <p style="color:gray">비밀글입니다.</p>
     <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
     원문 : <%= simple_format c.body %>
     <% end %>
@@ -100,7 +100,7 @@
     <%= f.label :body, '댓글' %><br>
     <%= f.text_area :body, class:"form-control", placeholder:"댓글을 입력하세요" %>
     <br>
-    <%= f.label :secret, '비밀로하시겠어요?(연락처 정보 등을 담을 시 비밀을 선택해주세요)'%>
+    <%= f.label :secret, '비밀로 작성하시겠어요?(연락처 정보 등을 담을 시 비밀을 선택해주세요)'%>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>

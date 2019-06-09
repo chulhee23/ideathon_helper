@@ -18,13 +18,36 @@
      font-family: 'BBTreeGR';
  }
 
- input[type="text"]{
+ input{
      all:unset;
  }
+ input[type="checkbox"]{
+    padding-left:5px;
+    padding-right:5px;
+    border-radius:15px;
+
+    -webkit-appearance:button;
+
+    border: double black 2px ;
+
+    background-color:white;
+    color:white;
+    white-space: nowrap;
+    overflow:hidden;
+
+    width:15px;
+    height:15px;
+ }
+ input[type='checkbox']:checked {
+    background-color :#0099ff;
+}
+
  .head-title{
      font-size:46px;
  }
-
+.sm-font{
+    font-size:25px;
+}
 .footer{
     padding:20px;
     text-align: center;
