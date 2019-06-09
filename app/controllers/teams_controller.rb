@@ -13,15 +13,20 @@ class TeamsController < ApplicationController
     end
        
     def create
-        @team = Team.new(team_params)
-        current_user.team = @team
-        current_user.save
-        @team.writer=current_user.name
-        @team.recruitment = true
-        if @team.save
-            redirect_to @team
+        if current_user.captain
+            redirect_to team_path(current_user.team)
         else
-            render 'new'
+            @team = Team.new(team_params)
+            current_user.team = @team
+            current_user.captain = true
+            current_user.save
+            @team.writer=current_user.name
+            @team.recruitment = true
+            if @team.save
+                redirect_to @team
+            else
+                render 'new'
+            end
         end
     end
     
@@ -42,14 +47,21 @@ class TeamsController < ApplicationController
     def destroy
         @team = Team.find(params[:id])
         @team.destroy
-        
+        current_user.captain=false
+        current_user.save
         redirect_to teams_path
     end
     
     def apply
-        current_user.team = Team.find(params[:id])
-        current_user.save
-        redirect_to team_path(current_user.team)
+        if current_user.captain
+            @message = "이미 소속된 팀이 있습니다."
+        else
+            current_user.team = Team.find(params[:id])
+            current_user.save
+            redirect_to team_path(current_user.team)
+        end
+
+        
     end
     
     def recruit

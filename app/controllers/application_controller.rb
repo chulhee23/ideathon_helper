@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
 
     protected
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:univ])
-        devise_parameter_sanitizer.permit(:account_update, keys: [:name,:univ])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:univ, :captain])
+        devise_parameter_sanitizer.permit(:account_update, keys: [:name,:univ, :captain])
     end
 
 end

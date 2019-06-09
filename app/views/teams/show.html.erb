@@ -1,7 +1,19 @@
 <h1><%=@team.team_name%></h1>
 <%= @team.title %>
-<br>
-<p>작성자 : <%= @team.writer %></p>
+<br><br><br>
+
+<!-- 팀장 user객체로 찾기 -->
+<% @team.users.each do |u| %>
+    <% if u.captain %>
+        <% ccc = u %>
+        <h3>팀장 : <%= ccc.name %></h3>
+        <% break %>
+    <% else %>
+        
+    <% end %>
+    
+<% end %>
+
 <br>
 <h3>팀원</h3>
 <% @team.users.each do |u| %>
@@ -12,7 +24,7 @@
 <% if @team.writer == current_user.name %>
     <% if @team.recruitment %>
     <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
-        onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료</a>
+        onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료하기</a>
 
     <form action="/teams/recruit/<%=@team.id %>" id="recruit-end" method="POST">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -31,10 +43,13 @@
 <br>
 <%if @team.recruitment %>
     <p>팀원 모집 상태 : 모집중입니다.</p>
-
+    <% if current_user.captain %>
+    <a class="btn btn-outline-secondary"
+        onclick="alert('이미 소속된 팀이 있습니다.')">지원하기</a>
+    <% else %>
     <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
         onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
-
+    <% end %>
     <form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <input type="hidden">
