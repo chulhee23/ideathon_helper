@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.7'
 
 # my gem
+
 gem 'rails_db', '~> 1.6'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
