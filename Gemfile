@@ -12,7 +12,7 @@ gem 'cancancan'
 gem 'activeadmin'
 
 # ec2 배포
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 gem 'sqlite3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
