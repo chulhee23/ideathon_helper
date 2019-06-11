@@ -121,7 +121,9 @@
 <% @team.comments.each do |c| %>
 <p  class="xs-font">
     <b><%= c.commenter %></b>
-    <small><%=c.created_at%></small>
+    <small>
+        <%=c.created_at.strftime("%m월 %d일 %H시%M분") %>
+    </small>
     <br>
     <% if c.secret%>
     <p style="color:gray" class="xs-font" >비밀글입니다.</p>
