@@ -10,6 +10,9 @@ class Ability
     can :destroy, Team do |t|
         t.writer == user.name
     end
+    can :destroy, Comment do |c|
+      c.commenter == user.name
+    end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

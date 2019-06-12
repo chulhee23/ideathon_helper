@@ -6,6 +6,12 @@ class CommentsController < ApplicationController
         @comment.save
         redirect_to team_path(@team)
     end
+    def destroy
+      @team = Team.find(params[:team_id])
+      comment = Comment.find(params[:id])
+      comment.destroy
+      redirect_to team_path(@team)
+    end
 
     private
     def team_params
