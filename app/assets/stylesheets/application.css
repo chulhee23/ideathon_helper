@@ -14,7 +14,7 @@
  
  *= require index
  *= require devise
- *= require show
+ 
  
 
  *= require_self
@@ -48,8 +48,16 @@
     background-color :#0099ff;
 }
 
+
+nav{
+    font-size: 1.3em;
+}
+.navbar-brand{
+    font-size: 1.3em;
+}
+
  .head-title{
-     font-size:46px;
+     font-size:3em;
  }
 
 .footer{
@@ -57,27 +65,28 @@
     text-align: center;
     color:white;
     background-color:black;
-    font-size:23px;
+    font-size:2.3em;
 }
 
 .footer-fb a{
     all:unset;
+    font-size: 0.5em;
 }
 .footer-for p{
-    font-size:20px;
+    font-size:0.7em;
     color:#f7f7f7;
     font-family: italic
 }
 
 .lg-font{
-    font-size:50px;
+    font-size:3.5em;
 }
 .md-font{
-    font-size:40px;
+    font-size: 2.8em;
 }
 .sm-font{
-    font-size:33px;
+    font-size:2.4em;
 }
 .xs-font{
-    font-size:25px;
+    font-size:2em;
 }

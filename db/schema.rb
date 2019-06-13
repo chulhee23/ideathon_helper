@@ -71,12 +71,10 @@ ActiveRecord::Schema.define(version: 2019_06_09_094536) do
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.boolean "captain"
-    t.integer "temp_team_id"
     t.boolean "belonging"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
-    t.index ["temp_team_id"], name: "index_users_on_temp_team_id"
   end
 
 end

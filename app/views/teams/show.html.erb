@@ -10,7 +10,7 @@
         
         <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
         <% if captain == current_user %>
-            <h4  class="md-font">지원자 리스트</h4>
+            <h4  class="sm-font">지원자 리스트</h4>
             <% @team.users.each do |tmp| %>
                 <!-- 지원은 했으나 아직 소속되기 전 -->
                 <% if tmp.belonging != true %>
@@ -30,9 +30,9 @@
 <% end %>
 <hr>
 <br>
-<h3 class="md-font">팀원</h3>
+<h3 class="sm-font">팀원</h3>
 <% @team.users.each do |u| %>
-<ul class="sm-font">
+<ul class="xs-font">
     <% if u.belonging %>
     <li><%= u.name %> | <%= u.univ%></li>
     <% end %>
@@ -82,7 +82,7 @@
 <% end %>
 <br>
 <hr>
-<div class="sm-font" style="text-align: center">
+<div class="xs-font" style="text-align: center">
     <%= simple_format @team.content %>
     <br>
 
@@ -98,7 +98,7 @@
                 <%= image_tag(img.url, style:'max-width:100%')%>
             </div>
         </div>
-        <br><br>
+        <br>
     <% end %>
     
     <br><br><br>
@@ -130,13 +130,13 @@
         <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
             원문 : <%= simple_format c.body, class:"xs-font" %>
             <% if can? :destroy, c %>
-                <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, data: {confirm: '정말 삭제하시겠어요?'} %>
+                <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xs-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
             <% end %>
         <% end %>
     <% else %>
         <%=simple_format c.body, class:"xs-font"  %>
         <% if can? :destroy, c %>
-            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, data: {confirm: '정말 삭제하시겠어요?'} %>
+            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xs-font", data: {confirm: '정말 삭제하시겠어요?'} %>
         <% end %>
     <% end %>
 </p>
@@ -147,7 +147,7 @@
 <%= form_for([@team, @team.comments.build]) do |f| %>
 <p>
     <%= f.label :body, '댓글' ,class:"sm-font" %><br>
-    <%= f.text_area :body, class:"form-control xs-font", placeholder:"댓글을 입력하세요" %>
+    <%= f.text_area :body, class:"form-control sm-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
     <br>
     <%= f.label :secret, '비밀로 작성하시겠어요?댓글 작성자와 글 작성자만 볼 수 있습니다.', class:"xs-font" %>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>

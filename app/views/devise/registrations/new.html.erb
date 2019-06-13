@@ -45,7 +45,8 @@
       <br>
       <%= f.password_field :password,
                                 required: true,
-                                class:"input-field",
+                                placeholder:'6글자 이상 입력해주세요',
+                                class:"input-field xs-font",
                                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                                 input_html: { autocomplete: "new-password" } %>
       <br><br>
