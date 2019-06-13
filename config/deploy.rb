@@ -4,7 +4,7 @@ lock "~> 3.11.0"
 set :application, "my_app_name"
 set :repo_url, "git@github.com:chulhee23/ideathon_helper.git"
 set :deploy_to, '/home/ubuntu/ideathon_helper'
-
+set :bundle_flags, '--deployment --quiet'
 set :linked_files, %w{config/database.yml config/master.key}
 #append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 # Default branch is :master
