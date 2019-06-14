@@ -5,7 +5,7 @@ ruby '2.4.2'
 
 # my gem
 
-gem 'rails_db', '~> 1.6'
+# gem 'rails_db', '~> 1.6'
 gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
