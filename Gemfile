@@ -10,7 +10,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
 gem 'activeadmin'
-
+gem 'simple_form'
 # ec2 배포
 #gem 'therubyracer', platforms: :ruby
 
