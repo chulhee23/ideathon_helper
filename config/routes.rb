@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :comments
   end
-
+  get 'my_page' => 'teams#my_page', as: 'my_page'
   get 'cancel' => 'teams#cancel', as: 'cancel'
   get 'accept/:id' => 'teams#accept', as: 'accept'
   post 'teams/apply/:id' => 'teams#apply', as: 'apply'

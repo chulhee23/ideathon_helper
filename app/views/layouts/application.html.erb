@@ -30,30 +30,29 @@
 
         <% if user_signed_in? %>
         <% if current_user.team ==nil %>
-          <li class="nav-item">
-            <a class="nav-link" href="#">소속된 팀이 없습니다.</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">소속된 팀이 없습니다.</a>
+        </li>
         <% else %>
-          <% if current_user.belonging %>
-            <%= link_to "소속팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"nav-link" %>
-          <% else %>
-          <%= link_to "지원한 팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"nav-link" %> 
-          <%= link_to "지원 취소하기", cancel_path, class:"nav-link" %> 
-          
-          <% end %>
+        <% if current_user.belonging %>
+        <%= link_to "소속팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"nav-link" %>
+        <% else %>
+        <%= link_to "지원한 팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"nav-link" %>
+        <%= link_to "지원 취소하기", cancel_path, class:"nav-link" %>
+
+        <% end %>
         <% end %>
         <li class="nav-item nav-link">
           <%= current_user.name %>
         </li>
         <li class="nav-item nav-link">
-            <%= current_user.univ %>
+          <%= current_user.univ %>
         </li>
-        
-        
-        
-        <li class="nav-item nav-link">
-          <%= link_to '로그아웃',  destroy_user_session_path, :method => "delete"%>
-        </li>
+      
+          <%= link_to "my_page", my_page_path, class:"nav-link" %>
+          <li class="nav-item nav-link">
+            <%= link_to '로그아웃',  destroy_user_session_path, :method => "delete"%>
+          </li>
         
         <% else %>
         <%= link_to '로그인', new_user_session_path, class:"nav-link" %>
@@ -91,7 +90,7 @@
       </div>
 
     </div>
-    
+
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
