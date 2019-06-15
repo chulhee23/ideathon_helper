@@ -21,13 +21,13 @@ class TeamsController < ApplicationController
             redirect_to team_path(current_user.team)
         else
             @team = Team.new(team_params)
-            current_user.team = @team
-            current_user.captain = true
-            current_user.belonging = true
-            current_user.save
             @team.writer=current_user.name
             @team.recruitment = true
             if @team.save
+                current_user.team = @team
+                current_user.captain = true
+                current_user.belonging = true
+                current_user.save
                 redirect_to @team
             else
                 render 'new'
@@ -110,6 +110,7 @@ class TeamsController < ApplicationController
 
     end
     def my_page
+        @my_vote = current_user.liked_teams
     end
 
     private
