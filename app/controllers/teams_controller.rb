@@ -21,13 +21,13 @@ class TeamsController < ApplicationController
             redirect_to team_path(current_user.team)
         else
             @team = Team.new(team_params)
-            current_user.team = @team
-            current_user.captain = true
-            current_user.belonging = true
-            current_user.save
             @team.writer=current_user.name
             @team.recruitment = true
             if @team.save
+                current_user.team = @team
+                current_user.captain = true
+                current_user.belonging = true
+                current_user.save
                 redirect_to @team
             else
                 render 'new'
@@ -110,18 +110,8 @@ class TeamsController < ApplicationController
 
     end
     def my_page
-        @team = current_user.team
-        if current_user.team!=nil
-            
-            if current_user.belonging ==true
-                @status = "소속팀 : "
-            else
-                @status = "지원 중인팀 : "
-            end
-        else
-            
-        end
-        @team = current_user.team
+
+        @my_vote = current_user.liked_teams
     end
 
     private

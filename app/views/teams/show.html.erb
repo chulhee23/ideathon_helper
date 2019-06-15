@@ -100,8 +100,16 @@
         </div>
         <br>
     <% end %>
+    <br>
+    <div style="text-align: center;">
+            <h1>투표해주세요!</h1>
+            <% if current_user.liked_teams.include? @team %>
+            <%= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
+            <% else %>
+                <%= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
+            <% end %>
+            </div>
     
-    <br><br><br>
     <div style="float:left;">
         <%= link_to  "목록", teams_path %>
         <% if can? :edit, @team %>
@@ -113,6 +121,8 @@
     </div>
     <br>
 </div>
+
+
 
 <br>
 <br>

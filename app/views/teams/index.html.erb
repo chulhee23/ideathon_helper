@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/app/assets/stylesheets/index.css">
-<h1 class="lg-font" >IDEATHON HELPER</h1>
+<h1 class="lg-font">IDEATHON 101</h1>
 <%= link_to '팀을 만들어보세요!', new_team_path , class:"xs-font" %>
 <hr>
 <div class="row">
@@ -10,11 +10,14 @@
                 <%= link_to "#{team.team_name}",team_path(team), class:"card-title" %>
                 <br>
                 <div class="card-text">
-                    <p>
+                    <p class="xss-font lg-size">
                         <%= team.short_title() %>
                         <!-- team.title로 보여주는게 이쁘면 이걸로 ㄱ -->
                     </p>
-
+                    <p class="xs-font mobile-size">
+                        <%= team.title %>
+                        
+                    </p>
                     <br>
                     <span style="float:right;" class="sm-font">
                         <%= team.writer %>
