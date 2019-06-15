@@ -110,6 +110,7 @@ class TeamsController < ApplicationController
 
     end
     def my_page
+
         @my_vote = current_user.liked_teams
     end
 
