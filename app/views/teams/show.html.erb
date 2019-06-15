@@ -1,20 +1,23 @@
+<div style="text-align: center">
 <h1 class="lg-font"><%=@team.team_name%></h1>
-<h2 class="lg-font"><%=@team.title %></h2>
+<hr style="height:1px;width:15%;color:black">
+<h2 class="md-font"><%=@team.title %></h2>
+</div>
 <br><br><br>
 
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
     <% if u.captain %>
         <% captain = u %>
-        <h3  class="md-font">팀장 : <%= captain.name %></h3>
+        <h3  class="xs-font">팀장 : <%= captain.name %></h3>
         
         <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
         <% if captain == current_user %>
-            <h4  class="sm-font">지원자 리스트</h4>
+            <h4  class="xs-font">지원자 리스트</h4>
             <% @team.users.each do |tmp| %>
                 <!-- 지원은 했으나 아직 소속되기 전 -->
                 <% if tmp.belonging != true %>
-                <div class="sm-font">
+                <div class="xs-font">
                     <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
                 </div>
                     
@@ -28,13 +31,13 @@
     <% end %>
     
 <% end %>
-<hr>
+
 <br>
-<h3 class="sm-font">팀원</h3>
+<h3 class="xss-font">팀원</h3>
 <% @team.users.each do |u| %>
-<ul class="xs-font">
+<ul class="xss-font">
     <% if u.belonging %>
-    <li><%= u.name %> | <%= u.univ%></li>
+    <li ><%= u.name %> | <%= u.univ%></li>
     <% end %>
 </ul>
 <% end %>
@@ -59,7 +62,7 @@
 <% end %>
 <br>
 <%if @team.recruitment %>
-    <p  class="md-font">팀원 모집 상태 : 모집중입니다.</p>
+    <p  class="xs-font">팀원 모집 상태 : <span style="color: #667cff">모집중입니다.</span></p>
     <% if current_user.captain or (current_user.team!=nil) %>
         <% if current_user.belonging !=true %>
             <a class="btn btn-outline-secondary"
@@ -78,7 +81,7 @@
     </form>
 
     <% else %>
-    <p>팀원 모집 상태 : 모집이 종료되었습니다.</p>
+    <p class="xs-font">팀원 모집 상태 : 모집이 종료되었습니다.</p>
 <% end %>
 <br>
 <hr>
@@ -140,13 +143,13 @@
         <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
             원문 : <%= simple_format c.body, class:"xs-font" %>
             <% if can? :destroy, c %>
-                <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xs-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
+                <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
             <% end %>
         <% end %>
     <% else %>
         <%=simple_format c.body, class:"xs-font"  %>
         <% if can? :destroy, c %>
-            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xs-font", data: {confirm: '정말 삭제하시겠어요?'} %>
+            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
         <% end %>
     <% end %>
 </p>
@@ -156,10 +159,10 @@
 
 <%= form_for([@team, @team.comments.build]) do |f| %>
 <p>
-    <%= f.label :body, '댓글' ,class:"sm-font" %><br>
+    
     <%= f.text_area :body, class:"form-control sm-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
     <br>
-    <%= f.label :secret, '비밀로 작성하시겠어요?댓글 작성자와 글 작성자만 볼 수 있습니다.', class:"xs-font" %>
+    <%= f.label :secret, '비밀로 작성하시겠어요?', class:"xs-font" %>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>

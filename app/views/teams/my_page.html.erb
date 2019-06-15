@@ -1,10 +1,13 @@
 <div style="text-align: center">
 <h1 class="lg-font" >MY PAGE</h1>
-<%= current_user.name %> | <%= current_user.univ %>
+<p class="xs-font">
+    <%= current_user.name %> | <%= current_user.univ %>
+</p>
+
 </div>
 <hr>
 <h2 class="md-font">투표한 팀</h2>
-<p class="xs-font">최대 3개의 팀에 투표 가능합니다.</p>
+<p class="xss-font">최대 3개의 팀에 투표 가능합니다.</p>
 <div class="row">
     <% @my_vote.each do |team| %>
     <div class="col-lg-4 col-md-12 mb-5">
