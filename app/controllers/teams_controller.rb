@@ -114,6 +114,19 @@ class TeamsController < ApplicationController
         @my_vote = current_user.liked_teams
     end
 
+    def csv_files
+        @results=[]
+        User.each do |u|
+            @results.push(liked_teams)
+        end
+        
+        respond_to do |format|
+            format.html
+            format.csv { send_data @results.to_csv }
+        end
+        
+    end
+    
     private
     def team_params
         params.require(:team).permit(:team_name, :title, :content, {avatars: []})
