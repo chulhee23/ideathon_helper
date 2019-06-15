@@ -45,15 +45,13 @@
         <li class="nav-item nav-link">
           <%= current_user.name %>
         </li>
+
+
+
+        <%= link_to "마이페이지", my_page_path, class:"nav-link" %>
         <li class="nav-item nav-link">
-          <%= current_user.univ %>
+          <%= link_to '로그아웃',  destroy_user_session_path, :method => "delete"%>
         </li>
-      
-          <%= link_to "my_page", my_page_path, class:"nav-link" %>
-          <li class="nav-item nav-link">
-            <%= link_to '로그아웃',  destroy_user_session_path, :method => "delete"%>
-          </li>
-        
         <% else %>
         <%= link_to '로그인', new_user_session_path, class:"nav-link" %>
         <%= link_to '회원가입', new_user_registration_path,  class:"nav-link" %>

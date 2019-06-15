@@ -1,8 +1,40 @@
-<h1>MY PAGE</h1>
+<div style="text-align: center">
+<h1 class="lg-font" >MY PAGE</h1>
+<%= current_user.name %> | <%= current_user.univ %>
+</div>
+<hr>
+<h2 class="md-font">투표한 팀</h2>
+<p class="xs-font">최대 3개의 팀에 투표 가능합니다.</p>
+<div class="row">
+    <% @my_vote.each do |team| %>
+    <div class="col-lg-4 col-md-12 mb-5">
+        <div class="card shadow">
+            <div class="card-body">
+                <%= link_to "#{team.team_name}",team_path(team), class:"card-title" %>
+                <br>
+                <div class="card-text">
+                    <br>
+                    <span style="float:left;" class="xs-font">
+                        <%= link_to '취소', vote_path(team), method: :delete, style:"color:#ff4242" %>
+                    </span>
+                    <span style="float:right;" class="xs-font">
+                        <%= team.writer %>
+                    </span>
 
-<h2>투표한 팀</h2>
-<p>최대 3개의 팀에 투표 가능</p>
-<p></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <% end %>
+
+</div>
+<% @my_vote.each do |v| %>
+
+
+<% end %>
+
 <h2>피드백 구성 조</h2>
 <!-- 팀 구성은 직접 오프라인으로 공지하는 것이 더 나을 수도..? -->
 <ul>
