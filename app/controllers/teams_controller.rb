@@ -110,6 +110,18 @@ class TeamsController < ApplicationController
 
     end
     def my_page
+        @team = current_user.team
+        if current_user.team!=nil
+            
+            if current_user.belonging ==true
+                @status = "소속팀 : "
+            else
+                @status = "지원 중인팀 : "
+            end
+        else
+            
+        end
+        @team = current_user.team
     end
 
     private
