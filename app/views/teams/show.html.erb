@@ -140,18 +140,18 @@
     </small>
     <br>
     <% if c.secret%>
-    <p style="color:gray" class="xss-font">비밀글입니다.</p>
-    <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
-    원문 : <%= simple_format c.body, class:"xss-font" %>
-    <% if can? :destroy, c %>
-    <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
-    <% end %>
-    <% end %>
-    <% else %>
-    <%=simple_format c.body, class:"xs-font"  %>
-    <% if can? :destroy, c %>
-    <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
-    <% end %>
+        <p style="color:gray" class="xss-font">비밀글입니다.</p>
+        <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
+            원문 : <%= simple_format html_escape(c.body), class:"xss-font" %>
+            <% if can? :destroy, c %>
+            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
+            <% end %>
+        <% end %>
+        <% else %>
+            <%=simple_format html_escape("#{c.body}"), class:"xs-font"%>
+            <% if can? :destroy, c %>
+               <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
+        <% end %>
     <% end %>
 </p>
 
@@ -161,7 +161,7 @@
 <%= form_for([@team, @team.comments.build]) do |f| %>
 <p>
 
-    <%= f.text_area :body, class:"form-control xs-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
+    <%= f.text_area "#{:body}".html_safe, class:"form-control xs-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
     <br>
     <%= f.label :secret, '비밀로 작성하시겠어요?', class:"xss-font" %>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
