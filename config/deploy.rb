@@ -7,8 +7,8 @@ set :deploy_to, '/home/ubuntu/ideathon_helper'
 set :bundle_flags, '--deployment --quiet'
 set :linked_files, %w{config/database.yml config/master.key}
 
-set :linked_dirs, %w{public/uploads}
-#append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+# set :linked_dirs, %w{public/uploads}
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
