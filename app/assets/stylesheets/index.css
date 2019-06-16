@@ -29,16 +29,14 @@ footer {
 }
 
 @media screen and (max-width: 990px) {
-    .card-text .lg-size { 
+    .lg-size { 
         display: none;
 
     }
 }
 @media screen and (min-width: 990px) {
-    .card-text p { 
-        display: block;
-    } 
-    .card-text  .mobile-size{
+
+    .mobile-size{
         display: none;
     }
 }

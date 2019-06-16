@@ -7,13 +7,14 @@
 <div class="row">
     <% @teams.each do |team| %>
     <div class="col-lg-4 col-md-12 mb-5">
-        <div class="card shadow">
+        <div class="card h-100 shadow">
             <div class="card-body">
-                <%= link_to "#{team.team_name}",team_path(team), class:"card-title" %>
-                <span class="card-title" style="float: right">
+                <%= link_to "#{team.short_name()}",team_path(team), class:"card-title sm-font lg-size" %>
+                <%= link_to "#{team.team_name}",team_path(team), class:"card-title sm-font mobile-size" %>
+                <!-- <span class="card-title" style="float: right;color:gray">
                     ?
-                    <!-- <= team.votants.count %> -->
-                </span>
+                    <= team.votants.count %>
+                </span> -->
                 <br>
                 <div class="card-text">
                     <p class="xss-font lg-size">
@@ -25,7 +26,7 @@
                         
                     </p>
                     <br>
-                    <span style="float:right;" class="sm-font">
+                    <span style="float:right;" class="xs-font">
                         <%= team.writer %>
                     </span>
 

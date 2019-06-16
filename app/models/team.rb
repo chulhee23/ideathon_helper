@@ -7,6 +7,14 @@ class Team < ApplicationRecord
     #vote
     has_many :votes
     has_many :votants, through: :votes, source: :user 
+    def short_name
+        if self.team_name.length > 7
+            return self.team_name[0..6]+'..'
+        else
+            return self.team_name
+        end
+
+    end
     def short_title
         if (self.title.length > 11)
             return self.title[0..11]+'...'
