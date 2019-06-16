@@ -2,7 +2,7 @@
 <h1 class="lg-font" >MY PAGE</h1>
 
 <% if current_user.email=="chulhee@a.a" %>
-    <a href="/csv_files.csv"><button class="btn btn-success">csv 추출</button></a>
+    <a href="/csv_files.csv"><button class="btn btn-success">투표 csv 추출</button></a>
 <% end %>
 <p class="xs-font">
     <%= current_user.name %> | <%= current_user.univ %>
