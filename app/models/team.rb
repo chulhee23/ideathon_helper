@@ -5,8 +5,8 @@ class Team < ApplicationRecord
     serialize :avatars, JSON
     
     #vote
-    has_many :votes
-    has_many :votants, through: :votes, source: :user 
+    has_many :votes, dependent: :destroy
+    has_many :votants, through: :votes, source: :user
     def short_name
         if self.team_name.length > 7
             return self.team_name[0..6]+'..'

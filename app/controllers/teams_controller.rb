@@ -54,6 +54,7 @@ class TeamsController < ApplicationController
         @team.users.each do |u|
             u.belonging = false
             u.team = nil
+            u.save
         end
         @team.destroy
         current_user.captain=false
