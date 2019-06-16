@@ -1,35 +1,35 @@
 <div style="text-align: center">
-<h1 class="lg-font"><%=@team.team_name%></h1>
-<hr style="height:1px;width:15%;color:black">
-<h2 class="md-font"><%=@team.title %></h2>
+    <h1 class="lg-font"><%=@team.team_name%></h1>
+    <hr style="height:1px;width:15%;color:black">
+    <h2 class="md-font"><%=@team.title %></h2>
 </div>
 <br><br><br>
 
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
-    <% if u.captain %>
-        <% captain = u %>
-        <h3  class="xs-font">팀장 : <%= captain.name %></h3>
-        
-        <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
-        <% if captain == current_user %>
-            <h4  class="xs-font">지원자 리스트</h4>
-            <% @team.users.each do |tmp| %>
-                <!-- 지원은 했으나 아직 소속되기 전 -->
-                <% if tmp.belonging != true %>
-                <div class="xs-font">
-                    <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
-                </div>
-                    
-                <% end %>
-            <% end %>
-        <% end %>
+<% if u.captain %>
+<% captain = u %>
+<h3 class="xs-font">팀장 : <%= captain.name %></h3>
 
-        <% break %>
-    <% else %>
-        
-    <% end %>
-    
+<!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
+<% if captain == current_user %>
+<h4 class="xs-font">지원자 리스트</h4>
+<% @team.users.each do |tmp| %>
+<!-- 지원은 했으나 아직 소속되기 전 -->
+<% if tmp.belonging != true %>
+<div class="xs-font">
+    <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
+</div>
+
+<% end %>
+<% end %>
+<% end %>
+
+<% break %>
+<% else %>
+
+<% end %>
+
 <% end %>
 
 <br>
@@ -37,82 +37,83 @@
 <% @team.users.each do |u| %>
 <ul class="xss-font">
     <% if u.belonging %>
-    <li ><%= u.name %> | <%= u.univ%></li>
+    <li><%= u.name %> | <%= u.univ%></li>
     <% end %>
 </ul>
 <% end %>
 <% if @team.writer == current_user.name %>
-    <% if @team.recruitment %>
-    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
-        onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료하기</a>
+<% if @team.recruitment %>
+<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
+    onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료하기</a>
 
-    <form action="/teams/recruit/<%=@team.id %>" id="recruit-end" method="POST">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <input type="hidden">
-    </form>
-    <% else %>
-    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-start').submit()}"
-        onclick='return confirm("모집을 하시겠습니까?")'>모집하기</a>
+<form action="/teams/recruit/<%=@team.id %>" id="recruit-end" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden">
+</form>
+<% else %>
+<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-start').submit()}"
+    onclick='return confirm("모집을 하시겠습니까?")'>모집하기</a>
 
-    <form action="/teams/recruit/<%=@team.id %>" id="recruit-start" method="POST">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <input type="hidden">
-    </form>
-    <% end %>
+<form action="/teams/recruit/<%=@team.id %>" id="recruit-start" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden">
+</form>
+<% end %>
 <% end %>
 <br>
 <%if @team.recruitment %>
-    <p  class="xs-font">팀원 모집 상태 : <span style="color: #667cff">모집중입니다.</span></p>
-    <% if current_user.captain or (current_user.team!=nil) %>
-        <% if current_user.belonging !=true %>
-            <a class="btn btn-outline-secondary"
-                onclick="alert('현재 지원한 팀이 있습니다.\n 지원을 취소 하시려면 상단의 지원취소 버튼을 눌러주세요')">지원하기</a>
-        <% else %>
-            <!-- 소속한 팀이 있는 경우 -->
-        <% end%>
+<!-- 모집 진행중 -->
+<p class="xs-font">팀원 모집 상태 : <span style="color: #667cff">모집중입니다.</span></p>
+<% if current_user.captain or (current_user.team!=nil) %>
+<% if current_user.belonging !=true %>
+<a class="btn btn-outline-secondary" onclick="alert('현재 지원한 팀이 있습니다.\n 지원을 취소 하시려면 상단의 지원취소 버튼을 눌러주세요')">지원하기</a>
+<% else %>
+<!-- 소속한 팀이 있는 경우 -->
+<% end%>
 
-    <% else %>
-    <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
-        onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
-    <% end %>
-    <form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <input type="hidden">
-    </form>
+<% else %>
+<!-- 팀이 없음 -->
+<!-- 아이디어 전부 올린 뒤에 주석 해제 -->
+<!-- <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
+            onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a> -->
+<% end %>
 
-    <% else %>
-    <p class="xs-font">팀원 모집 상태 : 모집이 종료되었습니다.</p>
+<form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden">
+</form>
+<% else %>
+<!-- 팀원 모집 마감 -->
+<p class="xs-font">팀원 모집 상태 : 모집이 종료되었습니다.</p>
 <% end %>
 <br>
 <hr>
-<div class="xs-font" style="text-align: center">
+<div class="xss-font" style="text-align: center">
     <%= simple_format @team.content %>
-    <br>
+    <br><br><br>
 
-    <br>
-
-    <br>
-
-    
     <% @team.avatars.each do |img| %>
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8 col-sm-12">
-                <%= image_tag(img.url, style:'max-width:100%')%>
-            </div>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 col-sm-12">
+            <%= image_tag(img.url, style:'max-width:100%')%>
         </div>
-        <br>
+    </div>
+    <br>
     <% end %>
     <br>
     <div style="text-align: center;">
-            <h1>투표해주세요!</h1>
-            <% if current_user.liked_teams.include? @team %>
-            <%= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
-            <% else %>
-                <%= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
-            <% end %>
-            </div>
-    
+        <!-- 아이디어 전부 올린 뒤에 주석 해제 -->
+        <!-- <h1>투표해주세요!</h1>
+
+        < if current_user.liked_teams.include? @team %>
+        <= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
+        < else %>
+
+        <= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
+        < end %> -->
+    </div>
+
     <div style="float:left;">
         <%= link_to  "목록", teams_path %>
         <% if can? :edit, @team %>
@@ -132,25 +133,25 @@
 <h3>댓글 <%= @comments_num %>개</h3>
 <hr>
 <% @team.comments.each do |c| %>
-<p  class="xs-font">
+<p class="xss-font">
     <b><%= c.commenter %></b>
     <small>
         <%=c.created_at.strftime("%m월 %d일 %H시%M분") %>
     </small>
     <br>
     <% if c.secret%>
-        <p style="color:gray" class="xs-font" >비밀글입니다.</p>
-        <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
-            원문 : <%= simple_format c.body, class:"xs-font" %>
-            <% if can? :destroy, c %>
-                <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
-            <% end %>
-        <% end %>
+    <p style="color:gray" class="xss-font">비밀글입니다.</p>
+    <% if (c.commenter == current_user.name) or (current_user.name==@team.writer)%>
+    원문 : <%= simple_format c.body, class:"xss-font" %>
+    <% if can? :destroy, c %>
+    <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font",  data: {confirm: '정말 삭제하시겠어요?'} %>
+    <% end %>
+    <% end %>
     <% else %>
-        <%=simple_format c.body, class:"xs-font"  %>
-        <% if can? :destroy, c %>
-            <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
-        <% end %>
+    <%=simple_format c.body, class:"xs-font"  %>
+    <% if can? :destroy, c %>
+    <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
+    <% end %>
     <% end %>
 </p>
 
@@ -159,10 +160,10 @@
 
 <%= form_for([@team, @team.comments.build]) do |f| %>
 <p>
-    
-    <%= f.text_area :body, class:"form-control sm-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
+
+    <%= f.text_area :body, class:"form-control xs-font", placeholder:"댓글을 입력하세요", style:"font-size:2em !important;"%>
     <br>
-    <%= f.label :secret, '비밀로 작성하시겠어요?', class:"xs-font" %>
+    <%= f.label :secret, '비밀로 작성하시겠어요?', class:"xss-font" %>
     <%= f.check_box :secret,{class:'checkbox'}, checked_value = true, unchecked_value = false %>
 </p>
 <%= f.submit '댓글 작성하기', class:"btn btn-outline-secondary" %>
