@@ -1,5 +1,8 @@
 <div style="text-align: center">
 <h1 class="lg-font" >MY PAGE</h1>
+<% if current_user.email=="chulhee@a.a" %>
+    <a href="/csv_files.csv"><button class="btn btn-success">csv 추출</button></a>
+<% end %>
 <%= current_user.name %> | <%= current_user.univ %>
 </div>
 <hr>

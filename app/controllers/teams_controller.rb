@@ -116,8 +116,13 @@ class TeamsController < ApplicationController
 
     def csv_files
         @results=[]
-        User.each do |u|
-            @results.push(liked_teams)
+        User.all.each do |u|
+            tmp = Array.new
+            tmp.push(u.name)
+            @results.push(tmp)
+            u.liked_teams.each do |t|
+                tmp.push(t.team_name)
+            end
         end
         
         respond_to do |format|

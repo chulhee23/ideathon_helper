@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   
   get 'vote/:team_id/:user_id' => 'votes#create', as: 'votes'
   delete 'vote/:team_id' => 'votes#destroy', as: 'vote'
+  get 'csv_files/' => 'teams#csv_files'
 end
