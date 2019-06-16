@@ -8,8 +8,8 @@ class Team < ApplicationRecord
     has_many :votes
     has_many :votants, through: :votes, source: :user 
     def short_name
-        if self.team_name.length > 7
-            return self.team_name[0..6]+'..'
+        if self.team_name.length > 9
+            return self.team_name[0..8]+'..'
         else
             return self.team_name
         end
