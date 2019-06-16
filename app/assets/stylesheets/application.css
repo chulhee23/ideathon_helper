@@ -65,6 +65,7 @@ nav{
     color:white;
     background-color:black;
     font-size:2.3em;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .footer-fb a{
@@ -74,7 +75,7 @@ nav{
 .footer-for p{
     font-size:0.7em;
     color:#f7f7f7;
-    font-family: italic
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .lg-font{

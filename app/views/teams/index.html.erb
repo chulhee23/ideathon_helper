@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/app/assets/stylesheets/index.css">
-<h1 class="lg-font">IDEATHON 101</h1>
+<h1 class="sm-font ideathon-title">IDEATHON </h1>
+<hr style="height:1px;width:15%;">
+<h1 class="lg-font ideathon-title">101</h1>
 <%= link_to '팀을 만들어보세요!', new_team_path , class:"xs-font" %>
 <hr>
 <div class="row">
@@ -8,6 +10,10 @@
         <div class="card shadow">
             <div class="card-body">
                 <%= link_to "#{team.team_name}",team_path(team), class:"card-title" %>
+                <span class="card-title" style="float: right">
+                    ?
+                    <!-- team.votant -->
+                </span>
                 <br>
                 <div class="card-text">
                     <p class="xss-font lg-size">
