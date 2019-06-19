@@ -9,7 +9,11 @@
 
 
 
-server '15.164.128.226', user: 'ubuntu', roles: %w{app db web}
+server '15.164.128.226', user: 'ubuntu', roles: %w{app db web},ssh_options: {
+    user: 'ec2-user',
+    keys: %w(~/.ssh/id_rsa),
+    auth_methods: %w(publickey)
+  }
 # role-based syntax
 # ==================
 
