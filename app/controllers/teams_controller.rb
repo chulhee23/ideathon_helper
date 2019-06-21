@@ -1,11 +1,12 @@
 class TeamsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :show, :destroy, :edit]
+    before_action :set_team, only: [:show, :edit, :update, :destroy]
     def index
         @teams = Team.all
     end
     
     def show
-        @team = Team.find(params[:id])
+        # @team = Team.find(params[:id])
         @comments_num = @team.comments.count
     end
     def new
@@ -36,11 +37,11 @@ class TeamsController < ApplicationController
     end
     
     def edit
-        @team = Team.find(params[:id])
+        # @team = Team.find(params[:id])
 
     end
     def update
-        @team = Team.find(params[:id])
+        # @team = Team.find(params[:id])
  
         if @team.update(team_params)
             redirect_to @team
@@ -50,7 +51,7 @@ class TeamsController < ApplicationController
     
     end
     def destroy
-        @team = Team.find(params[:id])
+        # @team = Team.find(params[:id])
         @team.users.each do |u|
             u.belonging = false
             u.team = nil
@@ -140,4 +141,8 @@ class TeamsController < ApplicationController
     def team_params
         params.require(:team).permit(:team_name, :title, :content, {avatars: []})
     end
+    def set_team
+        @team = Team.find(params[:id])
+    end
+
 end
