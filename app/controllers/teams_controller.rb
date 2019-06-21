@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
         if current_user.captain or (current_user.team !=nil)
             redirect_to team_path(current_user.team)
         else
-            @team = Team.new
+            @team = Team.new # form for 때문에 넣음
         end
     end
        
