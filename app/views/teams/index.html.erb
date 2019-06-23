@@ -6,7 +6,7 @@
 <%= link_to '공지사항', '/notice', class:"xs-font", style:"float:right;" %>
 <hr>
 <div class="row">
-    <% @teams.each do |team| %>
+    <% @teams.reverse.each do |team| %>
     <div class="col-lg-4 col-md-12 mb-5">
         <div class="card h-100 shadow">
             <div class="card-body">
