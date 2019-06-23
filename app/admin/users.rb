@@ -18,6 +18,7 @@ index do
   column :email
   column :name
   column :univ
+  column :team
   column :created_at
   actions
 end

@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
     has_many :comments, dependent: :destroy
-    has_many :users
+    has_many :users, dependent: :nullify
     mount_uploaders :avatars, AvatarUploader
     serialize :avatars, JSON
     
