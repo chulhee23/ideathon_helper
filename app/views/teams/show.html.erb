@@ -104,14 +104,12 @@
   <br>
   <div style="text-align: center;">
     <!-- 아이디어 전부 올린 뒤에 주석 해제 -->
-    <!-- <h1>투표해주세요!</h1>
-
-        < if current_user.liked_teams.include? @team %>
-        <= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
-        < else %>
-
-        <= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
-        < end %> -->
+    <h1>투표해주세요!</h1>
+        <% if current_user.liked_teams.include? @team %>
+        <%= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
+        <% else %>
+        <%= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
+        <% end %>
   </div>
 </div>
 <div class="xss-font" style="float:left;">
