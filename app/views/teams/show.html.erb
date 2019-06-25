@@ -3,7 +3,18 @@
   <hr style="height:1px;width:15%;color:black">
   <h2 class="md-font"><%=@team.title %></h2>
 </div>
-<br><br><br>
+<br>
+<div class="text-center">
+  <!-- 아이디어 전부 올린 뒤에 주석 해제 -->
+  <h4>-투표하기-</h3>
+  
+    <% if current_user.liked_teams.include? @team %>
+    <%= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
+    <% else %>
+    <%= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
+    <% end %>
+</div>
+<br><br>
 
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
@@ -104,15 +115,7 @@
   <br>
 
 </div>
-<div style="text-align: center;">
-  <!-- 아이디어 전부 올린 뒤에 주석 해제 -->
-  <h1>투표해주세요!</h1>
-  <% if current_user.liked_teams.include? @team %>
-  <%= link_to image_tag("full_heart.png", border: 0, style:"width:3em"), vote_path(@team), method: :delete, data: {confirm: '정말 투표를 취소하시겠어요?'}  %>
-  <% else %>
-  <%= link_to image_tag("heart.png", border: 0, style:"width:3em"), votes_path(@team, current_user) %>
-  <% end %>
-</div>
+
 <div class="xss-font" style="float:left;">
   <%= link_to  "목록", teams_path %>
   <% if can? :edit, @team %>
