@@ -5,6 +5,10 @@
 <%= link_to '팀을 만들어보세요!', new_team_path , class:"xs-font" %>
 <%= link_to '공지사항', '/notice', class:"xs-font", style:"float:right;" %>
 <hr>
+<div class="xss-font">
+  * 마음에 드는 팀에 투표해주세요!
+</div>
+<br>
 <div class="row">
     <% @teams.reverse.each do |team| %>
     <div class="col-lg-4 col-md-12 mb-5">
@@ -41,5 +45,5 @@
 
 </div>
 <div class="xss-font">
-    ***투표와 팀원 지원 기능은 후에 공개될 예정입니다.
+    ***팀원 지원 기능은 후에 공개될 예정입니다.
 </div>
