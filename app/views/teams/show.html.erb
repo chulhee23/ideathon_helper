@@ -99,10 +99,11 @@
 <% end %>
 <br>
 <hr>
-<div class="xss-font" style="text-align: center;white-space:pre-wrap; ">
+<div class="xss-font" style="text-align: left;white-space:pre-wrap; ">
   <%= simple_format html_escape("#{@team.content}")%>
   <br><br><br>
-
+</div>
+<div class="text-center">
   <% @team.avatars.each do |img| %>
   <div class="row">
     <div class="col-lg-2"></div>
@@ -113,7 +114,6 @@
   <br>
   <% end %>
   <br>
-
 </div>
 
 <div class="xss-font" style="float:left;">
