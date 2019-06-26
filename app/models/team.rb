@@ -16,8 +16,8 @@ class Team < ApplicationRecord
 
     end
     def short_title
-        if (self.title.length > 11)
-            return self.title[0..11]+'...'
+        if (self.title.length > 14)
+            return self.title[0..13]+'...'
         else
             return self.title
         end
