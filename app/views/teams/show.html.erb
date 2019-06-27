@@ -18,29 +18,28 @@
 
 <!-- 팀장 user객체로 찾기 -->
 <% @team.users.each do |u| %>
-<% if u.captain %>
-<% captain = u %>
-<h3 class="xs-font">팀장 : <%= captain.name %></h3>
+  <% if u.captain %>
+    <% captain = u %>
   
-    <%# link_to  "팀원으로 돌아가기", idea_destroy_path, class:"btn btn-warning xss-font mb-4", data: {confirm: "아이디어를 포기하고 팀원으로 돌아가겠습니까?\n소속 팀원들도 팀이 해체됩니다."}%>
-<!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
-<% if captain == current_user %>
-<h4 class="xs-font">지원자 리스트</h4>
-<% @team.users.each do |tmp| %>
-<!-- 지원은 했으나 아직 소속되기 전 -->
-<% if tmp.belonging != true %>
-<div class="xs-font">
-  <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
-</div>
+    <h3 class="xs-font">팀장 : <%= captain.name %></h3>
+      
+    
+    <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
+    <% if captain == current_user %>
+    <%= link_to  "팀원으로 돌아가기", idea_destroy_path, class:"btn btn-warning xss-font mb-4", data: {confirm: "아이디어를 포기하고 팀원으로 돌아가겠습니까?\n소속 팀원들도 팀이 해체됩니다."}%>
+      <h4 class="xs-font">지원자 리스트</h4>
+      <% @team.users.each do |tmp| %>
+        <!-- 지원은 했으나 아직 소속되기 전 -->
+        <% if tmp.belonging != true %>
+          <div class="xs-font">
+            <%= tmp.name %> | <%= tmp.univ %> | <%=link_to "팀원 받기", accept_path(tmp.id), class:"btn btn-outline-success"%>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
 
-<% end %>
-<% end %>
-<% end %>
-
-<% break %>
-<% else %>
-
-<% end %>
+  <% end %>
 
 <% end %>
 
