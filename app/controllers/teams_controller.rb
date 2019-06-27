@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :show, :destroy, :edit]
-    before_action :set_team, only: [:show, :edit, :update, :destroy]
+    before_action :set_team, only: [:show, :edit, :update, :destroy, :idea_destroy]
     def index
         @teams = Team.all
     end
@@ -61,6 +61,22 @@ class TeamsController < ApplicationController
         current_user.captain=false
         current_user.save
         redirect_to teams_path
+    end
+
+    def idea_destroy
+      @team.users.each do |u|
+        u.belonging = false
+        u.team = nil
+        u.save
+      end
+      @team.idea_status = false
+      @team.recruitment = false
+      @team.save
+
+      current_user.captain = false
+      current_user.save
+
+      redirect_to teams_path
     end
     
     def apply
