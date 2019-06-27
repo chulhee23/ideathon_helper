@@ -17,14 +17,14 @@
     <div class="col-lg-4 col-md-12 mb-5">
         <div class="card shadow">
             <div class="card-body">
-                <%= link_to "#{team.team_name}",team_path(team), class:"card-title" %>
+                <%= link_to "#{team.team_name}",team_path(team), class:"card-title xs-font" %>
                 <br>
                 <div class="card-text">
                     <br>
-                    <span style="float:left;" class="xs-font">
+                    <span style="float:left;" class="xss-font">
                         <%= link_to '취소', vote_path(team), method: :delete, style:"color:#ff4242" %>
                     </span>
-                    <span style="float:right;" class="xs-font">
+                    <span style="float:right;" class="xss-font">
                         <%= team.writer %>
                     </span>
 
