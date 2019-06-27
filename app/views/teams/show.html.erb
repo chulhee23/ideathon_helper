@@ -150,7 +150,7 @@
   <% end %>
   <% end %>
   <% else %>
-  <%=simple_format html_escape("#{c.body}"), class:"xs-font"%>
+  <%=simple_format html_escape("#{c.body}"), class:"xss-font"%>
   <% if can? :destroy, c %>
   <%= link_to '삭제', team_comment_path(@team,c), method: :DELETE, class:"xss-font", data: {confirm: '정말 삭제하시겠어요?'} %>
   <% end %>
