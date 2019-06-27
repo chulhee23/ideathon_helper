@@ -22,7 +22,7 @@
 <% captain = u %>
 <h3 class="xs-font">팀장 : <%= captain.name %></h3>
   
-    <%= link_to  "팀원으로 돌아가기", idea_destroy_path, class:"btn btn-warning xss-font mb-4", data: {confirm: "아이디어를 포기하고 팀원으로 돌아가겠습니까?\n소속 팀원들도 팀이 해체됩니다."}%>
+    <%# link_to  "팀원으로 돌아가기", idea_destroy_path, class:"btn btn-warning xss-font mb-4", data: {confirm: "아이디어를 포기하고 팀원으로 돌아가겠습니까?\n소속 팀원들도 팀이 해체됩니다."}%>
 <!-- 팀장이 신청을 받아줄 수 있어야 한다. -->
 <% if captain == current_user %>
 <h4 class="xs-font">지원자 리스트</h4>
