@@ -55,7 +55,7 @@
 <% @team.users.each do |u| %>
   <% if u.captain %>
     <% captain = u %>
-
+    <% if captain== current_user%>
     <% if @team.recruitment %>
       <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('recruit-end').submit()}"
         onclick='return confirm("모집을 마감하시겠습니까?")'>모집 종료하기</a>
@@ -72,6 +72,7 @@
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <input type="hidden">
       </form>
+    <% end %>
     <% end %>
   <% end %>
 <% end %>
