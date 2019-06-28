@@ -18,8 +18,8 @@
         <%= link_to "#{team.short_name()}",team_path(team), class:"card-title xs-font lg-size" %>
         <%= link_to "#{team.team_name}",team_path(team), class:"card-title xs-font mobile-size" %>
         <span class="card-title xs-font" style="float: right;color:gray">
-          ?
-          <%# team.votants.count %>
+          
+          <%= team.votants.count %>
         </span>
         <br>
         <div class="card-text">
