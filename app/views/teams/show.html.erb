@@ -90,8 +90,8 @@
 <% else %>
 <!-- 팀이 없음 -->
 <!-- 아이디어 전부 올린 뒤에 주석 해제 -->
-<!-- <a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
-            onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a> -->
+<a class="btn btn-outline-secondary" href="javascript:{document.getElementById('apply').submit()}"
+            onclick='return confirm("[<%=@team.team_name%>]팀에 지원하시겠습니까?")'>지원하기</a>
 <% end %>
 
 <form action="/teams/apply/<%=@team.id %>" id="apply" method="POST">
