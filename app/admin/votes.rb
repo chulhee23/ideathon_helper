@@ -11,14 +11,14 @@ ActiveAdmin.register Vote do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-index do
-  selectable_column
-  id_column
-  column :user
-  column :team_name
-  column :title
+  index do
+    selectable_column
+    id_column
+    column :user
+    column :team_name
+    column :title
 
-  column :created_at
-  actions		
-
+    column :created_at
+    actions		
+  end
 end
