@@ -9,6 +9,24 @@
 </p>
 
 </div>
+<div class="card p-5">
+    <% if current_user.team %>
+    <% if current_user.belonging %>
+      <%= link_to "소속팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"xss-font" %>
+    <% else %>
+      <%= link_to "지원한 팀 : #{current_user.team.team_name}", team_path(current_user.team.id), class:"xss-font" %>
+      <br>
+      <%= link_to "지원 취소하기", cancel_path, class:"xss-font" %>
+    <% end %>
+  <% else %>
+    <div class="xss-font">
+      소속되거나 지원한 팀이 없습니다.
+    </div>
+  <% end %>
+  
+</div>
+
+
 <hr>
 <h2 class="md-font">투표한 팀</h2>
 <p class="xss-font">최대 3개의 팀에 투표 가능합니다.</p>
